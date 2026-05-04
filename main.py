@@ -24,9 +24,7 @@ class SchedulerApp:
         self.ax = None
         self.canvas = None
 
-        # ==================================================
         # INTERFAZ PRINCIPAL
-        # ==================================================
 
         main_frame = ttk.Frame(root, padding=15)
         main_frame.pack(fill=tk.BOTH, expand=True)
@@ -75,9 +73,7 @@ class SchedulerApp:
 
         info_lbl.pack(side=tk.RIGHT)
 
-        # ==================================================
         # TABLA
-        # ==================================================
 
         table_frame = ttk.Frame(main_frame)
         table_frame.pack(fill=tk.X, pady=10)
@@ -130,9 +126,7 @@ class SchedulerApp:
             fill=tk.Y
         )
 
-        # ==================================================
         # MÉTRICAS
-        # ==================================================
 
         self.lbl_averages = ttk.Label(
             main_frame,
@@ -142,9 +136,7 @@ class SchedulerApp:
 
         self.lbl_averages.pack(pady=5)
 
-        # ==================================================
         # CONTENEDOR GANTT
-        # ==================================================
 
         self.graph_container = ttk.LabelFrame(
             main_frame,
@@ -158,9 +150,7 @@ class SchedulerApp:
             pady=10
         )
 
-    # ======================================================
     # CARGAR CSV
-    # ======================================================
 
     def load_csv(self):
 
@@ -200,10 +190,8 @@ class SchedulerApp:
                 f"No se pudo cargar el archivo:\n{e}"
             )
 
-    # ======================================================
     # PLANIFICADOR (Lógica Expulsiva Actualizada)
-    # ======================================================
-
+    
     def run_scheduler(self):
 
         if not self.processes:
@@ -286,9 +274,7 @@ class SchedulerApp:
 
         self.update_ui(finished, gantt_log)
 
-    # ======================================================
     # ACTUALIZAR UI
-    # ======================================================
 
     def update_ui(self, results, gantt_log):
 
@@ -333,9 +319,7 @@ class SchedulerApp:
 
         self.draw_interactive_gantt(results, gantt_log)
 
-    # ======================================================
     # GANTT (Actualizado para bloques fragmentados)
-    # ======================================================
 
     def draw_interactive_gantt(self, results, gantt_log):
 
@@ -368,10 +352,8 @@ class SchedulerApp:
                 linewidth=0.5
             )
 
-        # ==========================================
         # CONFIGURACIÓN
-        # ==========================================
-
+        
         self.ax.set_title(
             f"Diagrama de Gantt - {self.algo_var.get()}",
             fontsize=13,
@@ -393,9 +375,7 @@ class SchedulerApp:
 
         fig.tight_layout()
 
-        # ==========================================
         # CANVAS
-        # ==========================================
 
         self.canvas = FigureCanvasTkAgg(
             fig,
@@ -419,9 +399,7 @@ class SchedulerApp:
         canvas_widget = self.canvas.get_tk_widget()
         canvas_widget.pack(fill=tk.BOTH, expand=True)
 
-    # ======================================================
-    # ZOOM NATURAL
-    # ======================================================
+   # ZOOM NATURAL
 
     def on_zoom(self, event):
 
@@ -447,10 +425,6 @@ class SchedulerApp:
 
         self.canvas.draw_idle()
 
-
-# ==========================================================
-# MAIN
-# ==========================================================
 
 if __name__ == "__main__":
     root = tk.Tk()
